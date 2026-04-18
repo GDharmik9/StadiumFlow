@@ -1,0 +1,15 @@
+{
+  "name": "stadiumflow-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start:ui": "npm start --workspace=frontend",
+    "android": "npm run android --workspace=frontend",
+    "start:server": "npm start --workspace=backend",
+    "seed:db": "npm run seed --workspace=backend"
+  }
+}
