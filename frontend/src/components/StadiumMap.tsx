@@ -135,8 +135,8 @@ export const StadiumMap = ({ userLocation, ticketTarget, navigationPath = [], st
         if (webViewRef.current) {
             webViewRef.current.injectJavaScript(`
                 if(window.map) {
-                     window.map.setFilter('room-extrusion', ['all', ['==', 'feature_type', 'unit'], ['==', 'level', ${activeLevel}]]);
-                     window.map.setFilter('hotspot-points', ['all', ['!=', 'feature_type', 'unit'], ['==', 'level', ${activeLevel}]]);
+                     window.map.setFilter('room-extrusion', ['all', ['==', 'feature_type', 'unit'], ['>=', 'level', 0]]);
+                     window.map.setFilter('hotspot-points', ['all', ['!=', 'feature_type', 'unit']]);
                 }
                 true;
              `);
@@ -257,7 +257,7 @@ export const StadiumMap = ({ userLocation, ticketTarget, navigationPath = [], st
                   'id': 'hotspot-points',
                   'type': 'circle',
                   'source': 'stadium-data',
-                  'filter': ['all', ['!=', 'feature_type', 'unit'], ['==', 'level', 1]], 
+                  'filter': ['all', ['!=', 'feature_type', 'unit']], 
                   'paint': {
                       'circle-radius': 14,
                       'circle-color': [
