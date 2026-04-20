@@ -14,7 +14,7 @@ Open the link above in any browser to experience the full 3D Digital Twin with r
 
 > **Upload your `preview.mp4` to YouTube or Google Drive and paste the link here:**
 >
-> 📹 Video Link: `https://drive.google.com/file/d/1ZukeUHV_bff6SxuYpiowW01Y8vLWgq8r/view?usp=sharing`
+> 📹 Video Link: [https://drive.google.com/file/d/1ZukeUHV_bff6SxuYpiowW01Y8vLWgq8r/view?usp=sharing](https://drive.google.com/file/d/1ZukeUHV_bff6SxuYpiowW01Y8vLWgq8r/view?usp=sharing)
 
 ---
 
