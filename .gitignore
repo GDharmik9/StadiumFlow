@@ -43,3 +43,8 @@ yarn-error.*
 
 # google servies 
 google-services.json
+
+# large media files
+*.mp4
+*.mov
+*.avi

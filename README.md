@@ -2,6 +2,9 @@
 
 **Real-time crowd congestion detection and smart navigation for mega stadiums — powered by GPS, Bluetooth beacons, and a 3D Digital Twin.**
 
+> 📹 Video Link: `https://drive.google.com/file/d/1ZukeUHV_bff6SxuYpiowW01Y8vLWgq8r/view?usp=sharing`
+
+
 ---
 
 ## The Problem
