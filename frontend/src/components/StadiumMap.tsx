@@ -145,11 +145,18 @@ export const StadiumMap = ({ userLocation, ticketTarget, navigationPath = [], st
     }, [navigationPath, activeLevel, isMapReady]);
 
     // Force strict sync reacting to Native Toggle hooks and Agent Syncing
+    // Safely splitting Map Layer architectures visually: Level 1 = Blocks, Level 0 = Amenities + Crowd
     useEffect(() => {
         executeMapScript(`
             if(window.map) {
-                 window.map.setFilter('room-extrusion', ['all', ['==', 'feature_type', 'unit'], ['>=', 'level', 0]]);
-                 window.map.setFilter('hotspot-points', ['all', ['!=', 'feature_type', 'unit']]);
+                 window.map.setPaintProperty('room-extrusion', 'fill-extrusion-opacity', ${activeLevel === 1 ? 0.85 : 0.0});
+                 window.map.setPaintProperty('hotspot-points', 'circle-opacity', ${activeLevel === 0 ? 1.0 : 0.0});
+                 if (window.map.getLayer('hotspot-labels')) {
+                     window.map.setPaintProperty('hotspot-labels', 'text-opacity', ${activeLevel === 0 ? 1.0 : 0.0});
+                 }
+                 if (window.map.getLayer('ghost-layer')) {
+                     window.map.setPaintProperty('ghost-layer', 'circle-opacity', ${activeLevel === 0 ? 0.7 : 0.0});
+                 }
             }
             true;
          `);
@@ -372,7 +379,13 @@ export const StadiumMap = ({ userLocation, ticketTarget, navigationPath = [], st
     const handleWebViewMessage = (event: any) => {
         const rawData = event.nativeEvent ? event.nativeEvent.data : event.data;
         if (!rawData || typeof rawData !== 'string') return;
-        const data = JSON.parse(rawData);
+        
+        let data;
+        try {
+             data = JSON.parse(rawData);
+        } catch (e) {
+             return; // Gracefully reject random web extension DOM injections bypassing JSON crashes
+        }
         
         if (data.type === 'MAP_READY') {
             setIsMapReady(true);
